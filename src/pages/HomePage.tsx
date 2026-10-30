@@ -7,10 +7,10 @@ import { fetchCatalog } from '@/lib/stones';
 import { COLLECTION_IMAGES } from '@/lib/collectionImages';
 
 const HERO_SLIDES = [
-  { background: COLLECTION_IMAGES.gemstones[1], preview: COLLECTION_IMAGES.gemstones[0], label: 'دنیای گوهرها' },
-  { background: COLLECTION_IMAGES.crystals[0], preview: COLLECTION_IMAGES.crystals[1], label: 'تماشای بلورها' },
-  { background: COLLECTION_IMAGES.geodes[2], preview: COLLECTION_IMAGES.geodes[3], label: 'درون ژئودها' },
-  { background: COLLECTION_IMAGES['decorative-stones'][1], preview: COLLECTION_IMAGES['decorative-stones'][0], label: 'بافت سنگ‌ها' },
+  { background: COLLECTION_IMAGES.gemstones[0], preview: 'images/decorative.jpg', label: 'سنگ دکوراتیو' },
+  { background: COLLECTION_IMAGES.gemstones[1], preview: 'images/gemstones.jpg', label: 'گوهرهای رنگی' },
+  { background: COLLECTION_IMAGES.crystals[7], preview: 'images/geodes.jpg', label: 'برش ژئود' },
+  { background: COLLECTION_IMAGES.gemstones[2], preview: 'images/gallery-hero.jpg', label: 'ژئود در گالری' },
 ];
 
 const guide = [
@@ -79,13 +79,15 @@ export default function HomePage() {
               <a href="#/about" className="cinematic-secondary">درباره گالری <ArrowLeft size={16} aria-hidden="true" /></a>
             </div>
           </div>
-          <div className="hero-preview" aria-label="پیش‌نمایش تصاویر گالری">
-            <div className="hero-preview__heading"><div><span className="hero-preview__eyebrow">قابی از طبیعت</span><p className="hero-preview__title">{HERO_SLIDES[heroSlide].label}</p></div><span className="hero-preview__count" dir="ltr">0{heroSlide + 1} <span>/</span> 04</span></div>
-            <div className="hero-preview__featured"><img src={`${import.meta.env.BASE_URL}${HERO_SLIDES[heroSlide].preview.image}`} alt={HERO_SLIDES[heroSlide].preview.title} /><span>تصویر نمایشی</span></div>
-            <div className="hero-preview__thumbnails">
-              {HERO_SLIDES.map((slide, index) => <button key={slide.preview.image} type="button" onClick={() => { setHeroSlide(index); setHeroPlaying(false); }} aria-label={`نمایش تصویر ${slide.label}`} aria-pressed={heroSlide === index} className={`hero-preview__thumb ${heroSlide === index ? 'is-active' : ''}`}><img src={`${import.meta.env.BASE_URL}${slide.preview.image}`} alt="" loading="lazy" /></button>)}
+          <div className="hero-preview-wrap">
+            <div className="hero-preview" aria-label="پیش‌نمایش تصاویر گالری">
+              {HERO_SLIDES.map((slide, index) => <img key={slide.preview} src={`${import.meta.env.BASE_URL}${slide.preview}`} alt={index === heroSlide ? `تصویر نمایشی ${slide.label}` : ''} aria-hidden={index !== heroSlide} className={`hero-preview__image ${heroSlide === index ? 'is-active' : ''}`} />)}
             </div>
-            <div className="hero-preview__footer"><span><a href={HERO_SLIDES[heroSlide].preview.sourceUrl} target="_blank" rel="noreferrer">منبع تصویر پیش‌نمایش</a> · <a href={HERO_SLIDES[heroSlide].background.sourceUrl} target="_blank" rel="noreferrer">منبع پس‌زمینه</a></span>{!reducedMotion && <button type="button" onClick={() => setHeroPlaying((playing) => !playing)} className="hero-preview__play" aria-label={heroPlaying ? 'توقف پخش خودکار تصاویر' : 'شروع پخش خودکار تصاویر'}>{heroPlaying ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}{heroPlaying ? 'توقف نمایش' : 'پخش تصاویر'}</button>}</div>
+            <div className="hero-preview-controls" aria-label="کنترل تصاویر">
+              <div className="hero-preview-controls__dots">{HERO_SLIDES.map((slide, index) => <button key={slide.preview} type="button" onClick={() => { setHeroSlide(index); setHeroPlaying(false); }} aria-label={`نمایش تصویر ${slide.label}`} aria-pressed={heroSlide === index} className={`hero-preview-controls__dot ${heroSlide === index ? 'is-active' : ''}`} />)}</div>
+              {!reducedMotion && <button type="button" onClick={() => setHeroPlaying((playing) => !playing)} className="hero-preview-controls__play" aria-label={heroPlaying ? 'توقف پخش خودکار تصاویر' : 'شروع پخش خودکار تصاویر'}>{heroPlaying ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}</button>}
+              <a className="hero-preview-controls__credit" href={HERO_SLIDES[heroSlide].background.sourceUrl} target="_blank" rel="noreferrer">منبع تصویر پس‌زمینه</a>
+            </div>
           </div>
         </div>
 
