@@ -31,26 +31,39 @@ export default function HomePage() {
 
   return (
     <div className="exhibition-home">
-      {/* 01 — introduction */}
-      <section className="relative isolate overflow-hidden">
-        <img src={`${import.meta.env.BASE_URL}images/gallery-hero.jpg`} alt="" fetchPriority="high" className="absolute inset-0 -z-20 h-full w-full object-cover object-[35%_center]" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-l from-[#091b24] via-[#091b24]/80 to-[#091b24]/25" />
-        <a href="#/" aria-label="گوهرآرا، صفحه اصلی" className="absolute inset-x-0 top-7 z-10 mx-auto flex w-fit flex-col items-center gap-2 text-center sm:top-9">
-          <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/40 bg-white/10 text-[#b9ecd9] backdrop-blur-sm"><Gem size={23} strokeWidth={1.5} aria-hidden="true" /></span>
-          <span className="font-display text-xl font-bold leading-none text-white">{SITE_CONFIG.brandName}</span>
-          <span className="text-[9px] tracking-[.22em] text-white/75" dir="ltr">STONE GALLERY</span>
+      {/* Cinematic introduction */}
+      <section className="cinematic-hero" aria-labelledby="hero-title">
+        <div className="cinematic-hero__visual" aria-hidden="true">
+          <img src={`${import.meta.env.BASE_URL}images/gallery-hero.jpg`} alt="" fetchPriority="high" className="cinematic-hero__image" />
+          <div className="cinematic-hero__shade" />
+          <div className="cinematic-hero__light" />
+          <div className="cinematic-hero__grain" />
+          <div className="cinematic-hero__motes"><i /><i /><i /><i /><i /><i /></div>
+        </div>
+
+        <a href="#/" aria-label="گوهرآرا، صفحه اصلی" className="cinematic-brand">
+          <span className="cinematic-brand__mark"><Gem size={24} strokeWidth={1.35} aria-hidden="true" /></span>
+          <span className="cinematic-brand__name">{SITE_CONFIG.brandName}</span>
+          <span className="cinematic-brand__caption" dir="ltr">STONE GALLERY</span>
         </a>
-        <div className="mx-auto flex min-h-[650px] max-w-[1440px] flex-col justify-center px-6 pb-32 pt-48 sm:px-12 lg:min-h-[730px] lg:px-20">
-          <div className="max-w-2xl">
-            <p className="section-kicker section-kicker-light"><span /> گالری سنگ‌های زینتی و کلکسیونی</p>
-            <h1 className="mt-8 text-[2.8rem] font-normal leading-[1.55] text-[#f4faf9] sm:text-6xl lg:text-[4.7rem]">زیباییِ زمین،<br /><span className="text-[#b9ecd9]">در قابِ نگاه شما</span></h1>
-            <p className="mt-7 max-w-md text-sm leading-[2.4] text-[#d3e8e5] sm:text-base">دعوتی به دنیای سنگ‌ها؛ جایی برای مکث، تماشای جزئیات و کشف زیبایی‌هایی که طبیعت در گذر زمان خلق کرده است.</p>
-            <div className="mt-10 flex flex-wrap items-center gap-7">
-              <button type="button" onClick={() => goTo('collections')} className="exhibition-button">کشف دسته‌بندی‌ها <ArrowLeft size={17} aria-hidden="true" /></button>
-              <a href="#/about" className="inline-flex items-center gap-3 border-b border-[#72b6a7] py-3 text-sm text-white transition hover:text-[#b9ecd9]">درباره گالری <ArrowLeft size={15} aria-hidden="true" /></a>
+
+        <div className="cinematic-hero__inner">
+          <div className="cinematic-hero__copy">
+            <p className="cinematic-eyebrow hero-reveal"><span aria-hidden="true" /> گالری سنگ‌های زینتی و کلکسیونی</p>
+            <h1 id="hero-title" className="cinematic-title hero-reveal hero-reveal--delay-1">زیباییِ زمین،<br /><span>در قابِ نگاه شما</span></h1>
+            <p className="cinematic-description hero-reveal hero-reveal--delay-2">دعوتی به دنیای سنگ‌ها؛ جایی برای مکث، تماشای جزئیات و کشف زیبایی‌هایی که طبیعت در گذر زمان خلق کرده است.</p>
+            <div className="cinematic-actions hero-reveal hero-reveal--delay-3">
+              <button type="button" onClick={() => goTo('collections')} className="cinematic-primary">کشف دسته‌بندی‌ها <span><ArrowLeft size={17} aria-hidden="true" /></span></button>
+              <a href="#/about" className="cinematic-secondary">درباره گالری <ArrowLeft size={16} aria-hidden="true" /></a>
             </div>
           </div>
-          <div className="absolute bottom-8 left-6 right-6 flex items-center justify-between gap-4 border-t border-white/15 pt-5 text-[11px] text-[#b8cecf] sm:left-12 sm:right-12 lg:left-20 lg:right-20"><button type="button" onClick={() => goTo('collections')} className="inline-flex items-center gap-2 hover:text-white">آغاز تماشا <ArrowDown size={14} aria-hidden="true" /></button><span className="tracking-[.16em]" dir="ltr">AN EXHIBITION OF NATURE</span></div>
+          <div className="cinematic-side-note" aria-hidden="true"><span>CURATED BY NATURE</span><i /></div>
+        </div>
+
+        <div className="cinematic-bottom">
+          <button type="button" onClick={() => goTo('collections')} className="cinematic-scroll"><span className="cinematic-scroll__icon"><ArrowDown size={15} aria-hidden="true" /></span><span>آغاز تماشا</span></button>
+          <span className="cinematic-bottom__line" aria-hidden="true" />
+          <span className="cinematic-bottom__caption" dir="ltr">AN EXHIBITION OF NATURE <span>—</span> 01</span>
         </div>
       </section>
 

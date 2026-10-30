@@ -36,3 +36,70 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* An atmospheric, CSS-only opening: all motion respects reduced-motion preferences. */
+.cinematic-hero { position: relative; isolation: isolate; min-height: min(840px, 100svh); min-height: max(690px, min(840px, 100svh)); overflow: hidden; background: #0c1714; color: #fff; }
+.cinematic-hero__visual, .cinematic-hero__shade, .cinematic-hero__light, .cinematic-hero__grain, .cinematic-hero__motes { position: absolute; inset: 0; pointer-events: none; }
+.cinematic-hero__visual { z-index: -1; overflow: hidden; }
+.cinematic-hero__image { width: 100%; height: 100%; object-fit: cover; object-position: 36% center; animation: cinematic-drift 24s ease-in-out infinite alternate; }
+.cinematic-hero__shade { background: linear-gradient(270deg, rgba(7,19,17,.97) 0%, rgba(8,19,17,.80) 29%, rgba(11,18,16,.22) 68%, rgba(8,17,15,.23) 100%), linear-gradient(0deg, rgba(5,14,12,.75), transparent 28%, rgba(6,13,12,.2) 76%, rgba(6,13,12,.48)); }
+.cinematic-hero__light { background: radial-gradient(ellipse at 33% 32%, rgba(210, 172, 107, .13), transparent 45%); mix-blend-mode: screen; animation: cinematic-breathe 8s ease-in-out infinite alternate; }
+.cinematic-hero__grain { opacity: .16; background-image: repeating-linear-gradient(0deg, transparent 0, rgba(255,255,255,.035) 1px, transparent 2px, transparent 4px); }
+.cinematic-hero__motes i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #f5dfb8; box-shadow: 0 0 12px 2px rgba(243,209,147,.5); opacity: 0; animation: cinematic-mote 8s ease-in-out infinite; }
+.cinematic-hero__motes i:nth-child(1) { left: 17%; top: 34%; animation-delay: 0s; }
+.cinematic-hero__motes i:nth-child(2) { left: 29%; top: 63%; animation-delay: 2s; }
+.cinematic-hero__motes i:nth-child(3) { left: 46%; top: 24%; animation-delay: 4s; }
+.cinematic-hero__motes i:nth-child(4) { left: 57%; top: 68%; animation-delay: 1s; }
+.cinematic-hero__motes i:nth-child(5) { left: 12%; top: 72%; animation-delay: 5s; }
+.cinematic-hero__motes i:nth-child(6) { left: 42%; top: 45%; animation-delay: 3s; }
+.cinematic-brand { position: absolute; z-index: 2; top: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 7px; text-decoration: none; color: white; }
+.cinematic-brand__mark { display: grid; width: 47px; height: 47px; place-items: center; border: 1px solid rgba(220,229,212,.45); border-radius: 50%; color: #d8e7d9; background: rgba(10,24,20,.32); backdrop-filter: blur(8px); transition: background .3s, border-color .3s; }
+.cinematic-brand:hover .cinematic-brand__mark { background: rgba(200,230,208,.16); border-color: #d8e7d9; }
+.cinematic-brand__name { color: #fff; font-size: 20px; font-weight: 700; line-height: 1.4; }
+.cinematic-brand__caption { color: rgba(235,241,231,.67); font-size: 9px; letter-spacing: .23em; }
+.cinematic-hero__inner { position: relative; display: flex; align-items: center; width: 100%; max-width: 1440px; min-height: inherit; margin: 0 auto; padding: 190px 6% 150px; }
+.cinematic-hero__copy { max-width: 680px; }
+.cinematic-eyebrow { display: flex; align-items: center; gap: 13px; color: #d6d9c3; font-size: 12px; letter-spacing: .01em; }
+.cinematic-eyebrow span { width: 34px; height: 1px; background: #cfb98d; }
+.cinematic-title { margin-top: 24px; color: #fff; font-size: clamp(3rem, 5.2vw, 5.2rem); line-height: 1.55; font-weight: 500; letter-spacing: -.025em; }
+.cinematic-title span { color: #d5e6d5; }
+.cinematic-description { max-width: 465px; margin-top: 22px; color: rgba(238,242,232,.83); font-size: 15px; line-height: 2.5; }
+.cinematic-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; margin-top: 38px; }
+.cinematic-primary { display: inline-flex; min-height: 60px; align-items: center; gap: 26px; padding: 7px 20px 7px 8px; border: 1px solid #dce8d8; border-radius: 999px; background: #e1ece0; color: #18372c; font-size: 14px; font-weight: 600; transition: transform .3s, background .3s; }
+.cinematic-primary span { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 50%; background: #274e3f; color: white; transition: transform .3s; }
+.cinematic-primary:hover { transform: translateY(-3px); background: white; }
+.cinematic-primary:hover span { transform: translateX(-3px); }
+.cinematic-secondary { display: inline-flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(233,239,225,.55); color: #f1f4e9; font-size: 14px; transition: color .3s, border-color .3s; }
+.cinematic-secondary:hover { color: #c9e8d5; border-color: #c9e8d5; }
+.cinematic-side-note { position: absolute; left: 5%; top: 47%; display: flex; align-items: center; gap: 18px; color: rgba(239,238,220,.55); writing-mode: vertical-rl; font-size: 9px; letter-spacing: .25em; direction: ltr; }
+.cinematic-side-note i { width: 1px; height: 70px; background: linear-gradient(transparent, rgba(228,225,198,.7)); }
+.cinematic-bottom { position: absolute; left: 6%; right: 6%; bottom: 32px; display: flex; align-items: center; gap: 22px; color: rgba(240,243,230,.75); }
+.cinematic-scroll { display: inline-flex; flex-shrink: 0; align-items: center; gap: 11px; font-size: 12px; transition: color .3s; }
+.cinematic-scroll:hover { color: #fff; }
+.cinematic-scroll__icon { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; }
+.cinematic-bottom__line { flex: 1; height: 1px; background: rgba(255,255,255,.22); }
+.cinematic-bottom__caption { font-size: 9px; letter-spacing: .16em; }
+.cinematic-bottom__caption span { color: #d5bc8b; padding: 0 5px; }
+.hero-reveal { animation: cinematic-reveal 1s cubic-bezier(.2,.7,.2,1) both; }
+.hero-reveal--delay-1 { animation-delay: .15s; }
+.hero-reveal--delay-2 { animation-delay: .3s; }
+.hero-reveal--delay-3 { animation-delay: .45s; }
+@keyframes cinematic-drift { from { transform: scale(1.03); } to { transform: scale(1.1) translateX(1%); } }
+@keyframes cinematic-breathe { from { opacity: .45; } to { opacity: 1; } }
+@keyframes cinematic-mote { 0%, 100% { opacity: 0; transform: translateY(8px); } 30%, 60% { opacity: .6; } 85% { opacity: 0; transform: translateY(-22px); } }
+@keyframes cinematic-reveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 767px) {
+  .cinematic-hero { min-height: 740px; min-height: max(740px, 100svh); }
+  .cinematic-hero__image { object-position: 31% center; }
+  .cinematic-hero__shade { background: linear-gradient(270deg, rgba(6,17,15,.92), rgba(7,17,15,.65) 62%, rgba(7,17,15,.35)), linear-gradient(0deg, rgba(4,12,10,.85), transparent 50%, rgba(4,12,10,.45)); }
+  .cinematic-hero__inner { padding: 200px 24px 155px; align-items: center; }
+  .cinematic-title { font-size: clamp(2.5rem, 10vw, 3.5rem); line-height: 1.6; }
+  .cinematic-description { font-size: 14px; }
+  .cinematic-side-note { display: none; }
+  .cinematic-bottom { right: 24px; left: 24px; bottom: 24px; gap: 12px; }
+  .cinematic-bottom__caption { font-size: 8px; letter-spacing: .08em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-hero__image, .cinematic-hero__light, .cinematic-hero__motes i, .hero-reveal { animation: none; }
+  .cinematic-hero__motes i { display: none; }
+}
