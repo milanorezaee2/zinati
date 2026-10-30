@@ -185,3 +185,15 @@
   .hero-preview { margin: 0; max-width: none; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-preview__image { transition: none; } }
+
+/* Taller, uncluttered image frame and slow cinematic slideshow. */
+.hero-preview-wrap { transform: translateY(-50%); }
+.hero-preview { aspect-ratio: 1 / 1; }
+.cinematic-hero__image { animation: none; transform: scale(1.03); transition: opacity 1.6s ease; }
+.cinematic-hero__image.is-active { animation: hero-slide-drift 7s ease-out both; }
+.cinematic-hero--paused .cinematic-hero__image.is-active { animation-play-state: paused; }
+.cinematic-pause { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; color: #fff; transition: background .25s; }
+.cinematic-pause:hover { background: rgba(255,255,255,.17); }
+@keyframes hero-slide-drift { from { transform: scale(1.03) translateX(0); } to { transform: scale(1.1) translateX(1%); } }
+@media (max-width: 767px) { .hero-preview-wrap { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .cinematic-hero__image.is-active { animation: none; } }

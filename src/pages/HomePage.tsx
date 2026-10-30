@@ -54,7 +54,7 @@ export default function HomePage() {
   return (
     <div className="exhibition-home">
       {/* Cinematic introduction */}
-      <section className="cinematic-hero" aria-labelledby="hero-title">
+      <section className={`cinematic-hero ${!heroPlaying ? 'cinematic-hero--paused' : ''}`} aria-labelledby="hero-title">
         <div className="cinematic-hero__visual" aria-hidden="true">
           {HERO_SLIDES.map((slide, index) => <img key={slide.background.image} src={`${import.meta.env.BASE_URL}${slide.background.image}`} alt="" fetchPriority={index === 0 ? 'high' : 'auto'} className={`cinematic-hero__image ${index === heroSlide ? 'is-active' : ''}`} />)}
           <div className="cinematic-hero__shade" />
@@ -77,17 +77,14 @@ export default function HomePage() {
             <div className="cinematic-actions hero-reveal hero-reveal--delay-3">
               <button type="button" onClick={() => goTo('collections')} className="cinematic-primary">کشف دسته‌بندی‌ها <span><ArrowLeft size={17} aria-hidden="true" /></span></button>
               <a href="#/about" className="cinematic-secondary">درباره گالری <ArrowLeft size={16} aria-hidden="true" /></a>
+              {!reducedMotion && <button type="button" onClick={() => setHeroPlaying((playing) => !playing)} className="cinematic-pause" aria-label={heroPlaying ? 'توقف نمایش تصاویر' : 'پخش نمایش تصاویر'} title={heroPlaying ? 'توقف نمایش تصاویر' : 'پخش نمایش تصاویر'}>{heroPlaying ? <Pause size={15} aria-hidden="true" /> : <Play size={15} aria-hidden="true" />}</button>}
             </div>
           </div>
           <div className="hero-preview-wrap">
             <div className="hero-preview" aria-label="پیش‌نمایش تصاویر گالری">
               {HERO_SLIDES.map((slide, index) => <img key={slide.preview} src={`${import.meta.env.BASE_URL}${slide.preview}`} alt={index === heroSlide ? `تصویر نمایشی ${slide.label}` : ''} aria-hidden={index !== heroSlide} className={`hero-preview__image ${heroSlide === index ? 'is-active' : ''}`} />)}
             </div>
-            <div className="hero-preview-controls" aria-label="کنترل تصاویر">
-              <div className="hero-preview-controls__dots">{HERO_SLIDES.map((slide, index) => <button key={slide.preview} type="button" onClick={() => { setHeroSlide(index); setHeroPlaying(false); }} aria-label={`نمایش تصویر ${slide.label}`} aria-pressed={heroSlide === index} className={`hero-preview-controls__dot ${heroSlide === index ? 'is-active' : ''}`} />)}</div>
-              {!reducedMotion && <button type="button" onClick={() => setHeroPlaying((playing) => !playing)} className="hero-preview-controls__play" aria-label={heroPlaying ? 'توقف پخش خودکار تصاویر' : 'شروع پخش خودکار تصاویر'}>{heroPlaying ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}</button>}
-              <a className="hero-preview-controls__credit" href={HERO_SLIDES[heroSlide].background.sourceUrl} target="_blank" rel="noreferrer">منبع تصویر پس‌زمینه</a>
-            </div>
+
           </div>
         </div>
 
