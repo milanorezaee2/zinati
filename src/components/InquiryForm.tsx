@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { CheckCircle2, Loader2 } from 'lucide-react';
+import { CircleCheck as CheckCircle2, Loader as Loader2 } from 'lucide-react';
 import { submitInquiry } from '@/lib/inquiries';
 import { normalizeDigits } from '@/lib/format';
 import { BUTTON_PRIMARY, BUTTON_SECONDARY, INPUT_BASE, INPUT_IDLE, INPUT_INVALID } from '@/lib/styles';
@@ -78,11 +78,11 @@ export default function InquiryForm({ stoneId = null, stoneCode = null, defaultM
   if (status === 'success') {
     return (
       <div className="animate-fade-up flex flex-col items-center gap-4 py-8 text-center">
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-600/20 text-sage-300">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-500/15 text-sage-600">
           <CheckCircle2 className="h-7 w-7" aria-hidden="true" />
         </span>
-        <h3 className="text-xl text-cream-50">درخواست شما ثبت شد</h3>
-        <p className="max-w-sm text-sm text-charcoal-100">
+        <h3 className="text-xl text-ink-900">درخواست شما ثبت شد</h3>
+        <p className="max-w-sm text-sm leading-[1.6] text-ink-500">
           کارشناسان ما به‌زودی با شماره‌ای که وارد کردید تماس می‌گیرند.
         </p>
         <button type="button" onClick={resetForm} className={BUTTON_SECONDARY}>
@@ -97,7 +97,7 @@ export default function InquiryForm({ stoneId = null, stoneCode = null, defaultM
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <label htmlFor="inquiry-name" className="text-sm text-cream-200">
+        <label htmlFor="inquiry-name" className="text-sm text-ink-600">
           نام و نام خانوادگی
         </label>
         <input
@@ -112,14 +112,14 @@ export default function InquiryForm({ stoneId = null, stoneCode = null, defaultM
           aria-describedby={errors.name ? 'inquiry-name-error' : undefined}
         />
         {errors.name && (
-          <p id="inquiry-name-error" className="text-sm text-rose-300">
+          <p id="inquiry-name-error" className="text-sm text-wine-600">
             {errors.name}
           </p>
         )}
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="inquiry-phone" className="text-sm text-cream-200">
+        <label htmlFor="inquiry-phone" className="text-sm text-ink-600">
           شماره تماس یا واتساپ
         </label>
         <input
@@ -135,14 +135,14 @@ export default function InquiryForm({ stoneId = null, stoneCode = null, defaultM
           aria-describedby={errors.phone ? 'inquiry-phone-error' : undefined}
         />
         {errors.phone && (
-          <p id="inquiry-phone-error" className="text-sm text-rose-300">
+          <p id="inquiry-phone-error" className="text-sm text-wine-600">
             {errors.phone}
           </p>
         )}
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="inquiry-message" className="text-sm text-cream-200">
+        <label htmlFor="inquiry-message" className="text-sm text-ink-600">
           توضیحات (اختیاری)
         </label>
         <textarea
@@ -156,14 +156,14 @@ export default function InquiryForm({ stoneId = null, stoneCode = null, defaultM
           aria-describedby={errors.message ? 'inquiry-message-error' : undefined}
         />
         {errors.message && (
-          <p id="inquiry-message-error" className="text-sm text-rose-300">
+          <p id="inquiry-message-error" className="text-sm text-wine-600">
             {errors.message}
           </p>
         )}
       </div>
 
       {status === 'error' && (
-        <p role="alert" className="rounded-xl border border-rose-400/50 bg-rose-600/10 px-4 py-3 text-sm text-rose-300">
+        <p role="alert" className="rounded-xl border border-wine-400/40 bg-wine-300/10 px-4 py-3 text-sm text-wine-600">
           ثبت درخواست انجام نشد. لطفاً دوباره تلاش کنید یا از راه واتساپ با ما در تماس باشید.
         </p>
       )}

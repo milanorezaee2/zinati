@@ -5,7 +5,7 @@ import StoneCard from '@/components/StoneCard';
 import { useAsyncData } from '@/hooks/useAsyncData';
 import { getCollectionStones } from '@/lib/catalog';
 import { fetchCatalog } from '@/lib/stones';
-import { BUTTON_SECONDARY } from '@/lib/styles';
+import { BUTTON_SECONDARY, EYEBROW } from '@/lib/styles';
 import { STONE_CATEGORIES, type Stone, type StoneCollection } from '@/types/stone';
 
 interface GalleryPageProps {
@@ -26,9 +26,9 @@ function matchesQuery(stone: Stone, normalizedQuery: string): boolean {
 
 function GallerySkeleton() {
   return (
-    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3" aria-busy="true">
+    <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3" aria-busy="true">
       {[0, 1, 2, 3, 4, 5].map((item) => (
-        <div key={item} className="aspect-[4/5] animate-pulse rounded-2xl bg-charcoal-800" />
+        <div key={item} className="aspect-[4/5] animate-pulse rounded-2xl bg-ivory-200" />
       ))}
     </div>
   );
@@ -80,10 +80,10 @@ export default function GalleryPage({ initialCategory, initialCollection }: Gall
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
-      <div className="mb-12 flex max-w-2xl flex-col gap-4">
-        <p className="text-sm text-bronze-300">گالری</p>
+      <div className="mb-14 flex max-w-2xl flex-col gap-4">
+        <p className={EYEBROW}>گالری</p>
         <h1 className="text-4xl sm:text-5xl">مجموعه سنگ‌ها</h1>
-        <p className="text-sm leading-[1.5] text-charcoal-100 sm:text-base">
+        <p className="text-sm leading-[1.7] text-ink-500 sm:text-base">
           هر قطعه را با رنگ، بافت و منشأ آن بشناسید و برای استعلام، صفحه اختصاصی‌اش را باز کنید.
         </p>
       </div>
@@ -127,10 +127,10 @@ export default function GalleryPage({ initialCategory, initialCollection }: Gall
 
       {state.status === 'ready' && visibleStones.length > 0 && (
         <>
-          <p className="mb-6 text-sm text-charcoal-200" aria-live="polite">
+          <p className="mb-7 text-sm text-ink-400" aria-live="polite">
             {visibleStones.length} قطعه نمایش داده می‌شود
           </p>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {visibleStones.map((stone, index) => (
               <StoneCard key={stone.id} stone={stone} index={index} />
             ))}

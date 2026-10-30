@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply bg-charcoal-950 text-cream-100 antialiased;
+    @apply bg-ivory-50 text-ink-700 antialiased;
   }
 
   body {
@@ -15,12 +15,19 @@
   h2,
   h3,
   h4 {
-    @apply font-bold leading-[1.2] text-cream-50;
+    @apply font-bold leading-[1.2] text-ink-900;
+    letter-spacing: -0.01em;
   }
 
   ::selection {
-    background-color: #c9a46f;
-    color: #0d0b0a;
+    background-color: #b8945f;
+    color: #fdfbf7;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
 

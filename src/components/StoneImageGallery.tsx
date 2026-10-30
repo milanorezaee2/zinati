@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Gem } from 'lucide-react';
 
 interface StoneImageGalleryProps {
   images: string[];
@@ -12,7 +11,7 @@ export default function StoneImageGallery({ images, alt }: StoneImageGalleryProp
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-charcoal-700 bg-charcoal-900">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-ink-300/50 bg-ivory-100">
         {activeImage ? (
           <img
             key={activeImage}
@@ -21,8 +20,8 @@ export default function StoneImageGallery({ images, alt }: StoneImageGalleryProp
             className="h-full w-full object-cover animate-fade-in"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-bronze-500/60">
-            <Gem className="h-16 w-16" aria-hidden="true" />
+          <div className="flex h-full w-full items-center justify-center text-gold-300">
+            <span className="text-4xl font-bold">گ</span>
           </div>
         )}
       </div>
@@ -36,8 +35,8 @@ export default function StoneImageGallery({ images, alt }: StoneImageGalleryProp
               onClick={() => setActiveIndex(index)}
               aria-label={`نمایش تصویر ${index + 1}`}
               aria-pressed={index === activeIndex}
-              className={`aspect-square overflow-hidden rounded-xl border-2 transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze-300 ${
-                index === activeIndex ? 'border-bronze-400' : 'border-transparent opacity-60 hover:opacity-100'
+              className={`aspect-square overflow-hidden rounded-xl border-2 transition duration-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 ${
+                index === activeIndex ? 'border-gold-500' : 'border-transparent opacity-55 hover:opacity-100'
               }`}
             >
               <img src={src} alt="" loading="lazy" className="h-full w-full object-cover" />

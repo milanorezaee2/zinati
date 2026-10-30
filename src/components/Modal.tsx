@@ -29,20 +29,20 @@ export default function Modal({ open, title, onClose, children }: ModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6">
-      <div className="absolute inset-0 animate-fade-in bg-black/70 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
+      <div className="absolute inset-0 animate-fade-in bg-ink-900/60 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
       <div
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="relative max-h-[90vh] w-full overflow-y-auto rounded-t-3xl border border-charcoal-700 bg-charcoal-900 p-6 shadow-2xl animate-fade-up sm:max-w-lg sm:rounded-3xl sm:p-8"
+        className="relative max-h-[90vh] w-full overflow-y-auto rounded-t-3xl border border-ink-300/50 bg-ivory-50 p-6 shadow-2xl animate-fade-up sm:max-w-lg sm:rounded-3xl sm:p-8"
       >
         <div className="mb-6 flex items-start justify-between gap-4">
-          <h2 className="text-xl text-cream-50">{title}</h2>
+          <h2 className="text-xl text-ink-900">{title}</h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="بستن"
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-charcoal-600 text-cream-100 transition hover:border-bronze-400 hover:text-bronze-300"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink-300/60 text-ink-600 transition hover:border-ink-900 hover:text-ink-900"
           >
             <X className="h-4 w-4" aria-hidden="true" />
           </button>
