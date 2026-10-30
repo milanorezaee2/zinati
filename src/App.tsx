@@ -44,7 +44,7 @@ export default function App() {
     <div className="flex min-h-screen flex-col">
       <Header activeSection={activeSection} />
       <main className="flex-1">
-        <div key={pageKey} className="animate-fade-up">
+        <div key={pageKey}>
           {renderPage(route)}
         </div>
       </main>
