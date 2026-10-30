@@ -1,38 +1,17 @@
-import { supabase } from '@/lib/supabase';
-import type { Catalog, Stone, StoneCollection } from '@/types/stone';
+import type { Catalog } from '@/types/stone';
 
-const STONE_COLUMNS =
-  'id, code, name, category, stone_type, color, weight, dimensions, origin, availability, has_certificate, description, images, featured, sort_order, stone_categories(categories(id, slug, name, tagline, description, cover_image, sort_order))';
-
-const COLLECTION_COLUMNS = 'id, slug, name, tagline, description, cover_image, sort_order';
-
-interface StoneRow extends Omit<Stone, 'collections'> {
-  stone_categories: { categories: StoneCollection | null }[];
-}
-
-function mapStone(row: StoneRow): Stone {
-  if (!Array.isArray(row.stone_categories)) throw new Error('Unexpected stone categories response');
-  const { stone_categories, ...stone } = row;
-  return {
-    ...stone,
-    collections: stone_categories.flatMap((link) => (link.categories ? [link.categories] : [])),
-  };
-}
+// The collection is intentionally local. Add verified pieces to `stones` when
+// real photographs and descriptions are available; the covers are illustrative.
+const catalog: Catalog = {
+  collections: [
+    { id: 'gemstones', slug: 'gemstones', name: 'سنگ‌های قیمتی', tagline: 'درخشش در جزئیات', description: 'نگاهی نزدیک به دنیای گوهرها، رنگ‌های عمیق و ظرافت سنگ‌های طبیعی.', cover_image: `${import.meta.env.BASE_URL}images/gemstones.jpg`, sort_order: 1 },
+    { id: 'crystals', slug: 'crystals', name: 'بلورها و کانی‌ها', tagline: 'شکل‌هایی از دل زمین', description: 'مجموعه‌ای برای شناخت فرم‌های طبیعی، ساختار بلوری و زیبایی کانی‌ها.', cover_image: `${import.meta.env.BASE_URL}images/gallery-hero.jpg`, sort_order: 2 },
+    { id: 'geodes', slug: 'geodes', name: 'ژئود و برش سنگ', tagline: 'جهانی پنهان در درون سنگ', description: 'از لایه‌های عقیق تا حفره‌های بلورین؛ تماشای شگفتی‌هایی که درون سنگ پنهان‌اند.', cover_image: `${import.meta.env.BASE_URL}images/geodes.jpg`, sort_order: 3 },
+    { id: 'decorative', slug: 'decorative-stones', name: 'سنگ‌های دکوراتیو', tagline: 'طبیعت در فضای زندگی', description: 'فرم‌ها و بافت‌های طبیعی در قطعاتی برای فضاهای شخصی و دکوراتیو.', cover_image: `${import.meta.env.BASE_URL}images/decorative.jpg`, sort_order: 4 },
+  ],
+  stones: [],
+};
 
 export async function fetchCatalog(): Promise<Catalog> {
-  const [stonesResult, collectionsResult] = await Promise.all([
-    supabase.from('stones').select(STONE_COLUMNS).order('sort_order', { ascending: true }),
-    supabase.from('categories').select(COLLECTION_COLUMNS).order('sort_order', { ascending: true }),
-  ]);
-
-  if (stonesResult.error) throw new Error(stonesResult.error.message);
-  if (collectionsResult.error) throw new Error(collectionsResult.error.message);
-  if (!Array.isArray(stonesResult.data) || !Array.isArray(collectionsResult.data)) {
-    throw new Error('Unexpected catalog response');
-  }
-
-  return {
-    stones: (stonesResult.data as unknown as StoneRow[]).map(mapStone),
-    collections: collectionsResult.data as StoneCollection[],
-  };
+  return catalog;
 }

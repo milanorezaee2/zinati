@@ -1,22 +1,13 @@
 export const BUTTON_PRIMARY =
-  'inline-flex items-center justify-center gap-2 rounded-full bg-ink-900 px-7 py-3.5 text-sm font-medium text-ivory-50 transition duration-500 hover:bg-ink-800 hover:shadow-xl hover:shadow-ink-900/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 disabled:cursor-not-allowed disabled:opacity-50';
+  'inline-flex min-h-12 items-center justify-center gap-3 rounded-2xl bg-bronze-400 px-6 py-3 text-sm font-bold text-charcoal-950 transition duration-300 hover:-translate-y-0.5 hover:bg-bronze-300 hover:shadow-lg hover:shadow-bronze-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze-300 focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal-950 disabled:cursor-not-allowed disabled:opacity-60';
 
 export const BUTTON_SECONDARY =
-  'inline-flex items-center justify-center gap-2 rounded-full border border-ink-300 px-7 py-3.5 text-sm font-medium text-ink-800 transition duration-500 hover:border-ink-900 hover:bg-ink-900 hover:text-ivory-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50';
-
-export const BUTTON_GHOST =
-  'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-ink-700 transition duration-500 hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50';
+  'inline-flex min-h-12 items-center justify-center gap-3 rounded-2xl border border-bronze-500/60 bg-charcoal-900/60 px-6 py-3 text-sm font-semibold text-cream-100 transition duration-300 hover:border-bronze-400 hover:bg-bronze-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze-300 focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal-950';
 
 export const INPUT_BASE =
-  'w-full rounded-xl border bg-ivory-100 px-4 py-3.5 text-ink-900 placeholder:text-ink-400 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400/30';
+  'w-full rounded-2xl border bg-charcoal-950 px-4 py-3 text-cream-50 placeholder:text-charcoal-300 transition duration-200 focus:outline-none focus:ring-2 focus:ring-bronze-500/30';
 
-export const INPUT_IDLE = 'border-ink-300 focus:border-gold-400';
-
-export const INPUT_INVALID = 'border-wine-400 focus:border-wine-400 focus:ring-wine-400/30';
-
-export const CARD =
-  'rounded-2xl border border-ink-300/60 bg-ivory-100 transition duration-500';
-
-export const HAIRLINE = 'h-px w-full bg-gradient-to-r from-transparent via-gold-400/50 to-transparent';
+export const INPUT_IDLE = 'border-charcoal-600 focus:border-bronze-400';
+export const INPUT_INVALID = 'border-rose-400 focus:border-rose-300 focus:ring-rose-500/30';
 
 export const EYEBROW = 'text-xs font-medium uppercase tracking-luxe text-gold-600';
