@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-charcoal-950 text-cream-100 antialiased;
+  }
+
+  body {
+    @apply font-sans leading-[1.5];
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold leading-[1.2] text-cream-50;
+  }
+
+  ::selection {
+    background-color: #c9a46f;
+    color: #0d0b0a;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
