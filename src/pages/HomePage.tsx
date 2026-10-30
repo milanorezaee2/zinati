@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowDown, ArrowLeft, ChevronLeft, Gem, Layers3, Mountain, Pause, Play, Plus, ScanSearch, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ChevronLeft, Gem, Layers3, Pause, Play, Plus } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/siteConfig';
 import StoneCard from '@/components/StoneCard';
 import { useAsyncData } from '@/hooks/useAsyncData';
@@ -95,40 +95,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* A short editorial introduction before the collection selector. */}
+      {/* Collection introduction */}
       <section id="introduction" aria-labelledby="introduction-title" className="scroll-mt-8 overflow-hidden bg-[#f8f9f4] px-6 py-20 sm:px-12 lg:px-20 lg:py-28">
-        <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
+        <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-2 lg:gap-24">
           <div className="max-w-xl">
-            <p className="section-kicker"><span /> آشنایی با دنیای سنگ‌ها</p>
-            <h2 id="introduction-title" className="mt-6 text-3xl font-normal leading-[1.8] sm:text-4xl lg:text-[2.8rem]">از دل زمین،<br /><span className="text-bronze-300">تا دنیای گوهرها</span></h2>
-            <p className="mt-6 text-sm leading-[2.8] text-charcoal-200 sm:text-base">هر سنگ سرآغاز یک پرسش است: از چه ساخته شده و چه چیزی به آن این شکل و رنگ را داده است؟ شناخت چند واژه ساده، تماشای این جهان را جذاب‌تر می‌کند.</p>
+            <p className="section-kicker"><span /> معرفی مجموعه‌ها</p>
+            <h2 id="introduction-title" className="mt-6 text-3xl font-normal leading-[1.8] sm:text-4xl lg:text-[2.8rem]">هر قطعه،<br /><span className="text-bronze-300">دنیایی برای تماشا</span></h2>
+            <p className="mt-6 text-sm leading-[2.8] text-charcoal-200 sm:text-base">از درخشش گوهرهای تراش‌خورده تا بافت طبیعی بلورها و نقش‌های پنهان در برش سنگ؛ اینجا می‌توانید با جلوه‌های گوناگون سنگ‌های زینتی و دکوراتیو آشنا شوید.</p>
             <div className="mt-9 grid gap-5 border-t border-[#d6e2d7] pt-7 sm:grid-cols-2 sm:gap-8">
-              <div><span className="text-xs text-bronze-300">۰۱ / کانی</span><p className="mt-2 text-sm leading-8 text-charcoal-200">ماده‌ای طبیعی با ساختار و ترکیب مشخص؛ سنگ‌ها می‌توانند از یک یا چند کانی تشکیل شوند.</p></div>
-              <div><span className="text-xs text-bronze-300">۰۲ / گوهر</span><p className="mt-2 text-sm leading-8 text-charcoal-200">ماده‌ای طبیعی که به‌خاطر ویژگی‌هایی مانند زیبایی یا دوام، برای زینت و تماشا ارزشمند دانسته می‌شود.</p></div>
+              <div><span className="text-xs text-bronze-300">فرم و پرداخت</span><p className="mt-2 text-sm leading-8 text-charcoal-200">نمونه‌های خام، تراش‌خورده و صیقلی؛ هر کدام با شیوه‌ای متفاوت از نمایش زیبایی سنگ.</p></div>
+              <div><span className="text-xs text-bronze-300">رنگ و بافت</span><p className="mt-2 text-sm leading-8 text-charcoal-200">از سطوح شفاف و درخشان تا لایه‌ها و نقش‌هایی که در برش سنگ نمایان می‌شوند.</p></div>
             </div>
+            <button type="button" onClick={() => goTo('collections')} className="mt-8 inline-flex items-center gap-4 border-b border-[#6eaa91] pb-2 text-sm font-medium text-[#27695c] transition hover:gap-6">مشاهده دسته‌بندی‌ها <ArrowLeft size={16} aria-hidden="true" /></button>
           </div>
-          <figure className="intro-figure relative mx-auto w-full max-w-[520px]">
-            <div className="relative aspect-[5/4] overflow-hidden rounded-[1.5rem] bg-[#dce9df] sm:aspect-[6/5]"><img src={`${import.meta.env.BASE_URL}images/quartz-study.jpg`} alt="بلورهای کوارتز بر بستری از کانی تیره، تصویر نمایشی" loading="lazy" className="h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-[#10251d]/60 via-transparent to-transparent" /><span className="absolute bottom-6 right-6 border-r border-white/80 pr-4 text-xs leading-7 text-white">نگاهی نزدیک<br />به ساختار طبیعت</span></div>
-            <figcaption className="mt-3 flex justify-between gap-4 text-[11px] text-charcoal-200"><span>تصویر نمایشی از بلور کوارتز</span><a href="https://unsplash.com/photos/clear-quartz-crystals-on-dark-metallic-mineral-matrix-V0l3kUa6aBs" target="_blank" rel="noreferrer" className="underline underline-offset-4">منبع تصویر</a></figcaption>
+          <figure className="relative mx-auto w-full max-w-[520px]">
+            <div className="relative aspect-[5/4] overflow-hidden rounded-[1.5rem] bg-[#dce9df] sm:aspect-[6/5]"><img src={`${import.meta.env.BASE_URL}images/gemstones.jpg`} alt="تصویر نمایشی از گوهرهای رنگی" loading="lazy" className="h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-[#10251d]/65 via-transparent to-transparent" /><span className="absolute bottom-6 right-6 border-r border-white/80 pr-4 text-xs leading-7 text-white">زیبایی در جزئیات<br />تصویر نمایشی</span></div>
           </figure>
         </div>
       </section>
 
-      <section aria-labelledby="origins-title" className="bg-[#e8f0e9] px-6 py-20 sm:px-12 lg:px-20 lg:py-24">
+      <section aria-labelledby="showcase-title" className="bg-[#e8f0e9] px-6 py-20 sm:px-12 lg:px-20 lg:py-24">
         <div className="mx-auto max-w-[1280px]">
-          <div className="grid gap-5 md:grid-cols-2 md:items-end"><div><p className="section-kicker"><span /> داستان شکل‌گیری</p><h2 id="origins-title" className="mt-5 text-3xl font-normal leading-[1.8] sm:text-4xl">طبیعت، یک مسیر ندارد</h2></div><p className="max-w-md text-sm leading-8 text-charcoal-200 md:justify-self-end">سنگ‌ها و کانی‌ها در محیط‌های متفاوتی شکل می‌گیرند. این سه مسیر، تنها بخشی از داستان پیچیده آن‌ها هستند.</p></div>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            <article className="rounded-[1.3rem] border border-[#d1e0d3] bg-white/75 p-7 sm:p-8"><span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e5f0e6] text-[#337969]"><Mountain size={21} strokeWidth={1.5} aria-hidden="true" /></span><p className="mt-7 text-xs text-bronze-300">۰۱ / سرد شدن مواد مذاب</p><h3 className="mt-3 text-xl font-normal">از گرما تا سنگ</h3><p className="mt-3 text-sm leading-8 text-charcoal-200">با سرد و جامد شدن مواد مذاب، سنگ‌های آذرین شکل می‌گیرند؛ شرایط سرد شدن بر اندازه بلورهای آن‌ها اثر می‌گذارد.</p></article>
-            <article className="rounded-[1.3rem] border border-[#d1e0d3] bg-white/75 p-7 sm:p-8"><span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e5f0e6] text-[#337969]"><Sparkles size={21} strokeWidth={1.5} aria-hidden="true" /></span><p className="mt-7 text-xs text-bronze-300">۰۲ / محلول‌های معدنی</p><h3 className="mt-3 text-xl font-normal">رشد در فضای خالی</h3><p className="mt-3 text-sm leading-8 text-charcoal-200">مواد محلول در آب می‌توانند در شکاف‌ها یا حفره‌ها رسوب کنند و در شرایط مناسب، بلور یا لایه‌های کانی بسازند.</p></article>
-            <article className="rounded-[1.3rem] border border-[#d1e0d3] bg-white/75 p-7 sm:p-8"><span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e5f0e6] text-[#337969]"><Layers3 size={21} strokeWidth={1.5} aria-hidden="true" /></span><p className="mt-7 text-xs text-bronze-300">۰۳ / گرما و فشار</p><h3 className="mt-3 text-xl font-normal">دگرگونی در عمق</h3><p className="mt-3 text-sm leading-8 text-charcoal-200">سنگ‌های موجود می‌توانند زیر تأثیر گرما و فشار، بدون ذوب کامل، تغییر کنند و بافت و کانی‌های تازه‌ای پیدا کنند.</p></article>
+          <div className="grid gap-5 md:grid-cols-2 md:items-end"><div><p className="section-kicker"><span /> نگاهی به مجموعه‌ها</p><h2 id="showcase-title" className="mt-5 text-3xl font-normal leading-[1.8] sm:text-4xl">چهار جلوه از طبیعت</h2></div><p className="max-w-md text-sm leading-8 text-charcoal-200 md:justify-self-end">با انتخاب هر گروه، نمونه‌های تصویری و توضیحات همان دسته را در بخش جهان سنگ‌ها ببینید. تصاویر این بخش نمایشی هستند.</p></div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { slug: 'gemstones', image: 'images/gemstones.jpg', name: 'سنگ‌های قیمتی', detail: 'رنگ‌های چشمگیر و سطوح تراش‌خورده' },
+              { slug: 'crystals', image: 'images/quartz-study.jpg', name: 'بلورها و کانی‌ها', detail: 'فرم‌های طبیعی و ساختارهای بلوری' },
+              { slug: 'geodes', image: 'images/geodes.jpg', name: 'ژئود و برش سنگ', detail: 'لایه‌ها و جهان پنهان درون سنگ' },
+              { slug: 'decorative-stones', image: 'images/decorative.jpg', name: 'سنگ‌های دکوراتیو', detail: 'نقش و بافت برای تماشا در فضا' },
+            ].map((item, index) => <button key={item.slug} type="button" onClick={() => { setSelectedCollection(item.slug); goTo('collections'); }} aria-label={`مشاهده نمونه‌های ${item.name}`} className="group overflow-hidden rounded-[1.25rem] border border-[#d3e1d5] bg-white text-right shadow-[0_12px_35px_rgba(27,69,55,0.05)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(27,69,55,0.12)]"><span className="relative block aspect-[4/4.3] overflow-hidden bg-[#19372d]"><img src={`${import.meta.env.BASE_URL}${item.image}`} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" /><span className="absolute inset-0 bg-gradient-to-t from-[#10241b]/45 to-transparent" /><span className="absolute right-4 top-4 rounded-full border border-white/50 bg-black/20 px-3 py-1 text-[10px] text-white">تصویر نمایشی</span><span className="absolute bottom-4 left-4 text-xs text-white/80" dir="ltr">0{index + 1} / 04</span></span><span className="block p-5"><span className="flex items-center justify-between gap-2"><span className="text-base font-semibold text-cream-50">{item.name}</span><ArrowLeft size={17} className="text-bronze-300 transition group-hover:-translate-x-1" aria-hidden="true" /></span><span className="mt-2 block text-xs leading-6 text-charcoal-200">{item.detail}</span></span></button>)}
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="look-closer-title" className="bg-[#f8f9f4] px-6 py-20 sm:px-12 lg:px-20 lg:py-24">
+      <section aria-labelledby="showcase-detail-title" className="bg-[#f8f9f4] px-6 py-20 sm:px-12 lg:px-20 lg:py-24">
         <div className="mx-auto grid max-w-[1280px] overflow-hidden rounded-[1.6rem] border border-[#d7e3d8] bg-white md:grid-cols-[0.85fr_1.15fr]">
-          <div className="relative min-h-[280px] overflow-hidden bg-[#152b22] sm:min-h-[340px]"><img src={`${import.meta.env.BASE_URL}images/geodes.jpg`} alt="تصویر نمایشی از برش یک ژئود" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#10241c]/60 to-transparent" /><span className="absolute bottom-6 right-6 text-[10px] tracking-[.2em] text-white" dir="ltr">A CLOSER LOOK</span></div>
-          <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-14"><span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e7f1e8] text-[#337969]"><ScanSearch size={21} strokeWidth={1.5} aria-hidden="true" /></span><p className="section-kicker mt-7"><span /> یک نکته پیش از کشف</p><h2 id="look-closer-title" className="mt-4 text-2xl font-normal leading-[1.8] sm:text-3xl">ظاهر، فقط آغاز شناخت است</h2><p className="mt-5 max-w-xl text-sm leading-[2.7] text-charcoal-200">رنگ، درخشش و نقش، سرنخ‌هایی زیبا برای تماشا هستند؛ اما به‌تنهایی نوع، اصالت یا ارزش یک سنگ را مشخص نمی‌کنند. شناسایی دقیق به بررسی ویژگی‌های نمونه و گاهی آزمایش تخصصی نیاز دارد.</p><button type="button" onClick={() => goTo('collections')} className="mt-7 inline-flex w-fit items-center gap-3 border-b border-[#6eaa91] pb-2 text-sm font-medium text-[#27695c] transition hover:gap-5">کاوش دسته‌بندی‌ها <ArrowLeft size={16} aria-hidden="true" /></button></div>
+          <div className="relative min-h-[280px] overflow-hidden bg-[#152b22] sm:min-h-[380px]"><img src={`${import.meta.env.BASE_URL}images/geodes.jpg`} alt="تصویر نمایشی از برش ژئود" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#10241c]/60 to-transparent" /><span className="absolute bottom-6 right-6 text-xs text-white">ژئود و برش سنگ · تصویر نمایشی</span></div>
+          <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-14"><p className="section-kicker"><span /> نگاهی نزدیک‌تر</p><h2 id="showcase-detail-title" className="mt-5 text-2xl font-normal leading-[1.8] sm:text-3xl">زیبایی‌ای که درون سنگ<br /><span className="text-bronze-300">آشکار می‌شود</span></h2><p className="mt-5 max-w-xl text-sm leading-[2.7] text-charcoal-200">در گروه ژئود و برش سنگ، فرم بیرونی تنها آغاز تماشاست. برش می‌تواند لایه‌های رنگی و نقش‌های درونی را نشان دهد و حفره برخی ژئودها با بلورهای ریز پوشیده شده است.</p><div className="mt-6 flex flex-wrap gap-2 text-xs text-[#346d5e]"><span className="rounded-full bg-[#eaf3eb] px-4 py-2">لایه و نقش</span><span className="rounded-full bg-[#eaf3eb] px-4 py-2">برش و بافت</span><span className="rounded-full bg-[#eaf3eb] px-4 py-2">جزئیات بلوری</span></div><button type="button" onClick={() => { setSelectedCollection('geodes'); goTo('collections'); }} className="mt-7 inline-flex w-fit items-center gap-3 border-b border-[#6eaa91] pb-2 text-sm font-medium text-[#27695c] transition hover:gap-5">مشاهده نمونه‌های این دسته <ArrowLeft size={16} aria-hidden="true" /></button></div>
         </div>
       </section>
 
