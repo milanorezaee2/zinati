@@ -96,47 +96,51 @@ export default function HomePage() {
       </section>
 
       {/* Collection introduction */}
-      <section id="introduction" aria-labelledby="introduction-title" className="scroll-mt-8 overflow-hidden bg-[#f8f9f4] px-6 py-20 sm:px-12 lg:px-20 lg:py-28">
-        <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-2 lg:gap-24">
-          <div className="max-w-xl">
-            <p className="section-kicker"><span /> معرفی مجموعه‌ها</p>
-            <h2 id="introduction-title" className="mt-6 text-3xl font-normal leading-[1.8] sm:text-4xl lg:text-[2.8rem]">هر قطعه،<br /><span className="text-bronze-300">دنیایی برای تماشا</span></h2>
-            <p className="mt-6 text-sm leading-[2.8] text-charcoal-200 sm:text-base">از درخشش گوهرهای تراش‌خورده تا بافت طبیعی بلورها و نقش‌های پنهان در برش سنگ؛ اینجا می‌توانید با جلوه‌های گوناگون سنگ‌های زینتی و دکوراتیو آشنا شوید.</p>
-            <div className="mt-9 grid gap-5 border-t border-[#d6e2d7] pt-7 sm:grid-cols-2 sm:gap-8">
-              <div><span className="text-xs text-bronze-300">فرم و پرداخت</span><p className="mt-2 text-sm leading-8 text-charcoal-200">نمونه‌های خام، تراش‌خورده و صیقلی؛ هر کدام با شیوه‌ای متفاوت از نمایش زیبایی سنگ.</p></div>
-              <div><span className="text-xs text-bronze-300">رنگ و بافت</span><p className="mt-2 text-sm leading-8 text-charcoal-200">از سطوح شفاف و درخشان تا لایه‌ها و نقش‌هایی که در برش سنگ نمایان می‌شوند.</p></div>
+      <section id="introduction" aria-labelledby="introduction-title" className="editorial-intro scroll-mt-8">
+        <div className="editorial-shell">
+          <div className="editorial-overline"><span>گالری سنگ‌های زینتی</span><span dir="ltr">THE ART OF NATURE / 01</span></div>
+          <div className="editorial-intro__grid">
+            <div className="editorial-intro__copy">
+              <p className="section-kicker"><span /> معرفی مجموعه‌ها</p>
+              <h2 id="introduction-title">هر قطعه،<br /><em>دنیایی برای تماشا</em></h2>
+              <p className="editorial-intro__lead">از درخشش گوهرهای تراش‌خورده تا بافت طبیعی بلورها و نقش‌های پنهان در برش سنگ؛ اینجا می‌توانید با جلوه‌های گوناگون سنگ‌های زینتی و دکوراتیو آشنا شوید.</p>
+              <div className="editorial-intro__details">
+                <div><span>۰۱</span><h3>فرم و پرداخت</h3><p>نمونه‌های خام، تراش‌خورده و صیقلی؛ هر کدام با شیوه‌ای متفاوت از نمایش زیبایی سنگ.</p></div>
+                <div><span>۰۲</span><h3>رنگ و بافت</h3><p>از سطوح شفاف و درخشان تا لایه‌ها و نقش‌هایی که در برش سنگ نمایان می‌شوند.</p></div>
+              </div>
+              <button type="button" onClick={() => goTo('collections')} className="editorial-link">مشاهده دسته‌بندی‌ها <ArrowLeft size={17} aria-hidden="true" /></button>
             </div>
-            <button type="button" onClick={() => goTo('collections')} className="mt-8 inline-flex items-center gap-4 border-b border-[#6eaa91] pb-2 text-sm font-medium text-[#27695c] transition hover:gap-6">مشاهده دسته‌بندی‌ها <ArrowLeft size={16} aria-hidden="true" /></button>
+            <figure className="editorial-intro__figure">
+              <div className="editorial-intro__image"><img src={`${import.meta.env.BASE_URL}images/gemstones.jpg`} alt="تصویر نمایشی از گوهرهای رنگی" loading="lazy" /><span className="editorial-intro__image-label">زیبایی در جزئیات</span></div>
+              <figcaption><span>تصویر نمایشی از گوهرهای رنگی</span><span dir="ltr">FORM &amp; COLOR</span></figcaption>
+            </figure>
           </div>
-          <figure className="relative mx-auto w-full max-w-[520px]">
-            <div className="relative aspect-[5/4] overflow-hidden rounded-[1.5rem] bg-[#dce9df] sm:aspect-[6/5]"><img src={`${import.meta.env.BASE_URL}images/gemstones.jpg`} alt="تصویر نمایشی از گوهرهای رنگی" loading="lazy" className="h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-[#10251d]/65 via-transparent to-transparent" /><span className="absolute bottom-6 right-6 border-r border-white/80 pr-4 text-xs leading-7 text-white">زیبایی در جزئیات<br />تصویر نمایشی</span></div>
-          </figure>
         </div>
       </section>
 
-      <section aria-labelledby="showcase-title" className="bg-[#e8f0e9] px-6 py-20 sm:px-12 lg:px-20 lg:py-24">
-        <div className="mx-auto max-w-[1280px]">
-          <div className="grid gap-5 md:grid-cols-2 md:items-end"><div><p className="section-kicker"><span /> نگاهی به مجموعه‌ها</p><h2 id="showcase-title" className="mt-5 text-3xl font-normal leading-[1.8] sm:text-4xl">چهار جلوه از طبیعت</h2></div><p className="max-w-md text-sm leading-8 text-charcoal-200 md:justify-self-end">با انتخاب هر گروه، نمونه‌های تصویری و توضیحات همان دسته را در بخش جهان سنگ‌ها ببینید. تصاویر این بخش نمایشی هستند.</p></div>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <section aria-labelledby="showcase-title" className="editorial-showcase">
+        <div className="editorial-shell">
+          <div className="editorial-showcase__head"><div><p className="section-kicker"><span /> نگاهی به مجموعه‌ها</p><h2 id="showcase-title">چهار جلوه از طبیعت</h2></div><p>با انتخاب هر گروه، نمونه‌های تصویری و توضیحات همان دسته را در بخش جهان سنگ‌ها ببینید. تصاویر این بخش نمایشی هستند.</p></div>
+          <div className="editorial-showcase__grid">
             {[
-              { slug: 'gemstones', image: 'images/gemstones.jpg', name: 'سنگ‌های قیمتی', detail: 'رنگ‌های چشمگیر و سطوح تراش‌خورده' },
-              { slug: 'crystals', image: 'images/quartz-study.jpg', name: 'بلورها و کانی‌ها', detail: 'فرم‌های طبیعی و ساختارهای بلوری' },
-              { slug: 'geodes', image: 'images/geodes.jpg', name: 'ژئود و برش سنگ', detail: 'لایه‌ها و جهان پنهان درون سنگ' },
-              { slug: 'decorative-stones', image: 'images/decorative.jpg', name: 'سنگ‌های دکوراتیو', detail: 'نقش و بافت برای تماشا در فضا' },
-            ].map((item, index) => <button key={item.slug} type="button" onClick={() => { setSelectedCollection(item.slug); goTo('collections'); }} aria-label={`مشاهده نمونه‌های ${item.name}`} className="group overflow-hidden rounded-[1.25rem] border border-[#d3e1d5] bg-white text-right shadow-[0_12px_35px_rgba(27,69,55,0.05)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(27,69,55,0.12)]"><span className="relative block aspect-[4/4.3] overflow-hidden bg-[#19372d]"><img src={`${import.meta.env.BASE_URL}${item.image}`} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" /><span className="absolute inset-0 bg-gradient-to-t from-[#10241b]/45 to-transparent" /><span className="absolute right-4 top-4 rounded-full border border-white/50 bg-black/20 px-3 py-1 text-[10px] text-white">تصویر نمایشی</span><span className="absolute bottom-4 left-4 text-xs text-white/80" dir="ltr">0{index + 1} / 04</span></span><span className="block p-5"><span className="flex items-center justify-between gap-2"><span className="text-base font-semibold text-cream-50">{item.name}</span><ArrowLeft size={17} className="text-bronze-300 transition group-hover:-translate-x-1" aria-hidden="true" /></span><span className="mt-2 block text-xs leading-6 text-charcoal-200">{item.detail}</span></span></button>)}
+              { slug: 'gemstones', image: 'images/gemstones.jpg', name: 'سنگ‌های قیمتی', detail: 'رنگ‌های چشمگیر و سطوح تراش‌خورده', label: 'GEMSTONES' },
+              { slug: 'crystals', image: 'images/quartz-study.jpg', name: 'بلورها و کانی‌ها', detail: 'فرم‌های طبیعی و ساختارهای بلوری', label: 'MINERALS' },
+              { slug: 'geodes', image: 'images/geodes.jpg', name: 'ژئود و برش سنگ', detail: 'لایه‌ها و جهان پنهان درون سنگ', label: 'GEODES' },
+              { slug: 'decorative-stones', image: 'images/decorative.jpg', name: 'سنگ‌های دکوراتیو', detail: 'نقش و بافت برای تماشا در فضا', label: 'DECORATIVE' },
+            ].map((item, index) => <button key={item.slug} type="button" onClick={() => { setSelectedCollection(item.slug); goTo('collections'); }} aria-label={`مشاهده نمونه‌های ${item.name}`} className="editorial-card"><span className="editorial-card__image"><img src={`${import.meta.env.BASE_URL}${item.image}`} alt="" loading="lazy" /><span className="editorial-card__number" dir="ltr">0{index + 1}</span><span className="editorial-card__badge">تصویر نمایشی</span></span><span className="editorial-card__body"><span className="editorial-card__top"><span dir="ltr">{item.label}</span><ArrowLeft size={17} aria-hidden="true" /></span><span className="editorial-card__name">{item.name}</span><span className="editorial-card__detail">{item.detail}</span></span></button>)}
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="showcase-detail-title" className="bg-[#f8f9f4] px-6 py-20 sm:px-12 lg:px-20 lg:py-24">
-        <div className="mx-auto grid max-w-[1280px] overflow-hidden rounded-[1.6rem] border border-[#d7e3d8] bg-white md:grid-cols-[0.85fr_1.15fr]">
-          <div className="relative min-h-[280px] overflow-hidden bg-[#152b22] sm:min-h-[380px]"><img src={`${import.meta.env.BASE_URL}images/geodes.jpg`} alt="تصویر نمایشی از برش ژئود" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-gradient-to-t from-[#10241c]/60 to-transparent" /><span className="absolute bottom-6 right-6 text-xs text-white">ژئود و برش سنگ · تصویر نمایشی</span></div>
-          <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-14"><p className="section-kicker"><span /> نگاهی نزدیک‌تر</p><h2 id="showcase-detail-title" className="mt-5 text-2xl font-normal leading-[1.8] sm:text-3xl">زیبایی‌ای که درون سنگ<br /><span className="text-bronze-300">آشکار می‌شود</span></h2><p className="mt-5 max-w-xl text-sm leading-[2.7] text-charcoal-200">در گروه ژئود و برش سنگ، فرم بیرونی تنها آغاز تماشاست. برش می‌تواند لایه‌های رنگی و نقش‌های درونی را نشان دهد و حفره برخی ژئودها با بلورهای ریز پوشیده شده است.</p><div className="mt-6 flex flex-wrap gap-2 text-xs text-[#346d5e]"><span className="rounded-full bg-[#eaf3eb] px-4 py-2">لایه و نقش</span><span className="rounded-full bg-[#eaf3eb] px-4 py-2">برش و بافت</span><span className="rounded-full bg-[#eaf3eb] px-4 py-2">جزئیات بلوری</span></div><button type="button" onClick={() => { setSelectedCollection('geodes'); goTo('collections'); }} className="mt-7 inline-flex w-fit items-center gap-3 border-b border-[#6eaa91] pb-2 text-sm font-medium text-[#27695c] transition hover:gap-5">مشاهده نمونه‌های این دسته <ArrowLeft size={16} aria-hidden="true" /></button></div>
+      <section aria-labelledby="showcase-detail-title" className="editorial-feature">
+        <div className="editorial-shell editorial-feature__grid">
+          <figure className="editorial-feature__image"><img src={`${import.meta.env.BASE_URL}images/geodes.jpg`} alt="تصویر نمایشی از برش ژئود" loading="lazy" /><figcaption>ژئود و برش سنگ · تصویر نمایشی</figcaption></figure>
+          <div className="editorial-feature__copy"><p className="section-kicker"><span /> نگاهی نزدیک‌تر</p><h2 id="showcase-detail-title">زیبایی‌ای که درون سنگ<br /><em>آشکار می‌شود</em></h2><p>در گروه ژئود و برش سنگ، فرم بیرونی تنها آغاز تماشاست. برش می‌تواند لایه‌های رنگی و نقش‌های درونی را نشان دهد و حفره برخی ژئودها با بلورهای ریز پوشیده شده است.</p><div className="editorial-feature__tags"><span>لایه و نقش</span><span>برش و بافت</span><span>جزئیات بلوری</span></div><button type="button" onClick={() => { setSelectedCollection('geodes'); goTo('collections'); }} className="editorial-link">مشاهده نمونه‌های این دسته <ArrowLeft size={17} aria-hidden="true" /></button></div>
         </div>
       </section>
 
       {/* 02 — collection taxonomy */}
-      <section id="collections" aria-labelledby="collections-title" className="scroll-mt-24 border-b border-[#d9e5dc] bg-[#f0f4ed] px-6 py-24 sm:px-12 lg:px-20 lg:py-32">
+      <section id="collections" aria-labelledby="collections-title" className="collection-section scroll-mt-24 border-b border-[#d9e5dc] bg-[#f0f4ed] px-6 py-24 sm:px-12 lg:px-20 lg:py-32">
         <div className="mx-auto max-w-[1280px]">
           <div className="mb-12 grid gap-6 md:grid-cols-2 md:items-end">
             <div><p className="section-kicker"><span /> جهان سنگ‌ها</p><h2 id="collections-title" className="mt-5 text-3xl font-normal leading-[1.7] sm:text-4xl">از کجا شروع کنیم؟</h2></div>
@@ -146,7 +150,7 @@ export default function HomePage() {
           {state.status === 'error' && <div className="border border-[#d9e5dc] p-8 text-sm leading-8 text-charcoal-200"><p>امکان نمایش دسته‌بندی‌ها وجود ندارد.</p><button onClick={retry} className="mt-3 text-bronze-300 underline underline-offset-4">تلاش دوباره</button></div>}
           {state.status === 'ready' && selected && (
             <div className="grid gap-5 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-7">
-              <aside aria-label="انتخاب دسته‌بندی سنگ‌ها" className="self-start rounded-[1.5rem] border border-[#d9e5dc] bg-white p-4 shadow-[0_12px_40px_rgba(27,69,55,0.05)] sm:p-5 lg:sticky lg:top-6">
+              <aside aria-label="انتخاب دسته‌بندی سنگ‌ها" className="collection-sidebar self-start rounded-[1.5rem] border border-[#d9e5dc] bg-white p-4 shadow-[0_12px_40px_rgba(27,69,55,0.05)] sm:p-5 lg:sticky lg:top-6">
                 <div className="mb-4 flex items-center gap-3 border-b border-[#e5ede6] px-2 pb-5">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#e6f2e9] text-bronze-300"><Layers3 size={20} aria-hidden="true" /></span>
                   <div><h3 className="text-base font-semibold text-cream-50">دسته‌بندی‌ها</h3><p className="mt-1 text-xs text-charcoal-200">مجموعه مورد نظر خود را انتخاب کنید</p></div>
@@ -163,7 +167,7 @@ export default function HomePage() {
                 </div>
                 <a href="#/gallery" className="mt-4 flex items-center justify-between gap-3 border-t border-[#e5ede6] px-3 pt-5 text-sm text-bronze-300 hover:text-bronze-700">مشاهده همه مجموعه‌ها <ArrowLeft size={16} aria-hidden="true" /></a>
               </aside>
-              <div id="collection-preview" className="min-w-0">
+              <div id="collection-preview" className="collection-results min-w-0">
                 <div className="mb-6 flex flex-wrap items-end justify-between gap-5 rounded-[1.5rem] border border-[#d9e5dc] bg-white px-6 py-6 sm:px-8">
                   <div><p className="section-kicker"><span /> {selected.tagline}</p><h3 className="mt-3 text-2xl font-semibold leading-9 text-cream-50">{selected.name}</h3><p className="mt-2 max-w-2xl text-sm leading-8 text-charcoal-200">{selected.description}</p></div>
                   <a href={`#/category/${selected.slug}`} className="inline-flex items-center gap-2 text-sm font-medium text-bronze-300 hover:text-bronze-700">آشنایی با این مجموعه <ArrowLeft size={16} aria-hidden="true" /></a>
@@ -171,7 +175,7 @@ export default function HomePage() {
                 <p className="mb-4 text-xs leading-7 text-charcoal-200" aria-live="polite">۱۰ کارت تصویری نمایشی از دسته {selected.name}</p>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
                   {(COLLECTION_IMAGES[selected.slug] ?? []).map((photo, index) => (
-                    <article key={photo.image} className="group flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-[#d9e5dc] bg-white shadow-[0_8px_24px_rgba(27,69,55,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(27,69,55,0.10)]">
+                    <article key={photo.image} className="collection-photo group flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-[#d9e5dc] bg-white shadow-[0_8px_24px_rgba(27,69,55,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(27,69,55,0.10)]">
                       <a href={`${import.meta.env.BASE_URL}${photo.image}`} target="_blank" rel="noopener noreferrer" aria-label={`مشاهده تصویر بزرگ‌تر ${photo.title}`} className="block overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-bronze-400">
                         <img src={`${import.meta.env.BASE_URL}${photo.image}`} alt={photo.title} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105" />
                       </a>
