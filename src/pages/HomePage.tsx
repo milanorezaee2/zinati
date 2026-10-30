@@ -4,6 +4,7 @@ import { SITE_CONFIG } from '@/lib/siteConfig';
 import StoneCard from '@/components/StoneCard';
 import { useAsyncData } from '@/hooks/useAsyncData';
 import { fetchCatalog } from '@/lib/stones';
+import { COLLECTION_IMAGES } from '@/lib/collectionImages';
 
 const guide = [
   { number: '۰۱', title: 'رنگ و نقش', text: 'به طیف رنگ‌ها، رگه‌ها و الگوهایی که روی سطح یا درون سنگ دیده می‌شوند توجه کنید.' },
@@ -64,7 +65,7 @@ export default function HomePage() {
           {state.status === 'error' && <div className="border border-[#d9e5dc] p-8 text-sm leading-8 text-charcoal-200"><p>امکان نمایش دسته‌بندی‌ها وجود ندارد.</p><button onClick={retry} className="mt-3 text-bronze-300 underline underline-offset-4">تلاش دوباره</button></div>}
           {state.status === 'ready' && selected && (
             <div className="grid gap-5 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-7">
-              <aside aria-label="انتخاب دسته‌بندی سنگ‌ها" className="rounded-[1.5rem] border border-[#d9e5dc] bg-white p-4 shadow-[0_12px_40px_rgba(27,69,55,0.05)] sm:p-5">
+              <aside aria-label="انتخاب دسته‌بندی سنگ‌ها" className="self-start rounded-[1.5rem] border border-[#d9e5dc] bg-white p-4 shadow-[0_12px_40px_rgba(27,69,55,0.05)] sm:p-5 lg:sticky lg:top-6">
                 <div className="mb-4 flex items-center gap-3 border-b border-[#e5ede6] px-2 pb-5">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#e6f2e9] text-bronze-300"><Layers3 size={20} aria-hidden="true" /></span>
                   <div><h3 className="text-base font-semibold text-cream-50">دسته‌بندی‌ها</h3><p className="mt-1 text-xs text-charcoal-200">مجموعه مورد نظر خود را انتخاب کنید</p></div>
@@ -81,17 +82,26 @@ export default function HomePage() {
                 </div>
                 <a href="#/gallery" className="mt-4 flex items-center justify-between gap-3 border-t border-[#e5ede6] px-3 pt-5 text-sm text-bronze-300 hover:text-bronze-700">مشاهده همه مجموعه‌ها <ArrowLeft size={16} aria-hidden="true" /></a>
               </aside>
-              <div id="collection-preview" aria-live="polite" className="grid overflow-hidden rounded-[1.5rem] border border-[#d9e5dc] bg-white shadow-[0_12px_40px_rgba(27,69,55,0.05)] md:grid-cols-2">
-                <div className="flex flex-col items-start justify-center p-7 sm:p-10 lg:p-12">
-                  <p className="section-kicker"><span /> {selected.tagline}</p>
-                  <h3 className="mt-6 text-2xl font-semibold leading-[1.8] text-cream-50 sm:text-3xl">{selected.name}</h3>
-                  <p className="mt-5 max-w-md text-sm leading-[2.6] text-charcoal-200 sm:text-base">{selected.description}</p>
-                  <a href={`#/category/${selected.slug}`} className="exhibition-button mt-8">آشنایی با این مجموعه <ArrowLeft size={17} aria-hidden="true" /></a>
+              <div id="collection-preview" className="min-w-0">
+                <div className="mb-6 flex flex-wrap items-end justify-between gap-5 rounded-[1.5rem] border border-[#d9e5dc] bg-white px-6 py-6 sm:px-8">
+                  <div><p className="section-kicker"><span /> {selected.tagline}</p><h3 className="mt-3 text-2xl font-semibold leading-9 text-cream-50">{selected.name}</h3><p className="mt-2 max-w-2xl text-sm leading-8 text-charcoal-200">{selected.description}</p></div>
+                  <a href={`#/category/${selected.slug}`} className="inline-flex items-center gap-2 text-sm font-medium text-bronze-300 hover:text-bronze-700">آشنایی با این مجموعه <ArrowLeft size={16} aria-hidden="true" /></a>
                 </div>
-                <div className="relative min-h-[260px] overflow-hidden bg-charcoal-800 sm:min-h-[320px] md:min-h-[450px]">
-                  {selected.cover_image && <img src={selected.cover_image} alt="" className="absolute inset-0 h-full w-full object-cover" />}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#091923]/55 to-transparent" />
-                  <span className="absolute bottom-5 right-5 rounded-full border border-white/30 bg-black/30 px-4 py-2 text-xs text-white">تصویر نمایشی</span>
+                <p className="mb-4 text-xs leading-7 text-charcoal-200" aria-live="polite">۱۰ کارت تصویری نمایشی از دسته {selected.name}</p>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  {(COLLECTION_IMAGES[selected.slug] ?? []).map((photo, index) => (
+                    <article key={photo.image} className="group flex h-full min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-[#d9e5dc] bg-white shadow-[0_8px_24px_rgba(27,69,55,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(27,69,55,0.10)]">
+                      <a href={`${import.meta.env.BASE_URL}${photo.image}`} target="_blank" rel="noopener noreferrer" aria-label={`مشاهده تصویر بزرگ‌تر ${photo.title}`} className="block overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-bronze-400">
+                        <img src={`${import.meta.env.BASE_URL}${photo.image}`} alt={photo.title} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105" />
+                      </a>
+                      <div className="flex flex-1 flex-col p-5">
+                        <div className="flex items-center justify-between gap-2 text-xs text-bronze-300"><span>{selected.name}</span><span>{new Intl.NumberFormat('fa-IR', { minimumIntegerDigits: 2 }).format(index + 1)}</span></div>
+                        <h4 className="mt-3 text-base font-semibold leading-8 text-cream-50">{photo.title}</h4>
+                        <p className="mt-2 flex-1 text-sm leading-7 text-charcoal-200">{photo.description}</p>
+                        <div className="mt-5 flex items-center justify-between gap-2 border-t border-[#e5ede6] pt-4 text-xs"><span className="text-charcoal-300">تصویر نمایشی</span><a href={photo.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-bronze-300 underline underline-offset-2" aria-label={`منبع تصویر ${photo.title}: ${photo.source}`}>منبع: {photo.source}</a></div>
+                      </div>
+                    </article>
+                  ))}
                 </div>
               </div>
             </div>
