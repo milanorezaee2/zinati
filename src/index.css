@@ -131,3 +131,35 @@
   .hero-preview { position: relative; left: auto; bottom: auto; width: 100%; max-width: 340px; margin-top: 38px; align-self: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) { .cinematic-hero__image { transition: none; } }
+
+/* A compact hero with a separate, larger framed preview. */
+.cinematic-hero { min-height: clamp(600px, 83svh, 700px); }
+.cinematic-hero__inner { padding-top: 150px; padding-bottom: 105px; }
+.cinematic-brand { top: 18px; }
+.cinematic-brand__mark { width: 40px; height: 40px; }
+.cinematic-brand__name { font-size: 18px; }
+.cinematic-title { font-size: clamp(2.7rem, 4.7vw, 4.6rem); margin-top: 16px; }
+.cinematic-description { margin-top: 14px; }
+.cinematic-actions { margin-top: 24px; }
+.cinematic-hero__shade { background: linear-gradient(270deg, rgba(9,27,23,.94) 0%, rgba(11,29,25,.79) 34%, rgba(14,30,24,.38) 67%, rgba(9,22,18,.27) 100%), linear-gradient(0deg, rgba(7,22,17,.68), transparent 38%, rgba(9,22,18,.36)); }
+.hero-preview { width: min(36%, 390px); top: 50%; bottom: auto; transform: translateY(-42%); padding: 16px; }
+.hero-preview__featured { position: relative; aspect-ratio: 16 / 9; overflow: hidden; margin-top: 12px; border: 1px solid rgba(255,255,255,.2); border-radius: 12px; background: #283b30; }
+.hero-preview__featured img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hero-preview__featured > span { position: absolute; right: 10px; bottom: 10px; border-radius: 999px; padding: 4px 9px; background: rgba(8,25,19,.76); color: white; font-size: 10px; }
+.hero-preview__thumbnails { margin-top: 10px; }
+.hero-preview__thumb { aspect-ratio: 16 / 9; }
+.hero-preview__footer { margin-top: 10px; flex-wrap: wrap; }
+.hero-preview__footer a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 767px) {
+  .cinematic-hero { min-height: 0; }
+  .cinematic-brand { top: 16px; }
+  .cinematic-hero__inner { min-height: 0; padding: 145px 22px 90px; }
+  .cinematic-title { font-size: clamp(2.2rem, 9vw, 3.2rem); line-height: 1.5; }
+  .cinematic-description { line-height: 2.1; }
+  .cinematic-actions { gap: 18px; margin-top: 20px; }
+  .cinematic-primary { min-height: 52px; }
+  .cinematic-primary span { width: 36px; height: 36px; }
+  .hero-preview { position: relative; top: auto; left: auto; bottom: auto; transform: none; width: 100%; max-width: 390px; margin-top: 26px; }
+  .hero-preview__featured { aspect-ratio: 16 / 9; }
+  .cinematic-bottom { bottom: 20px; }
+}
