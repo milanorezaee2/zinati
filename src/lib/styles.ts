@@ -9,3 +9,5 @@ export const INPUT_BASE =
 
 export const INPUT_IDLE = 'border-charcoal-600 focus:border-bronze-400';
 export const INPUT_INVALID = 'border-rose-400 focus:border-rose-300 focus:ring-rose-500/30';
+
+export const EYEBROW = 'text-xs font-medium uppercase tracking-luxe text-gold-600';

@@ -33,10 +33,10 @@ function FilterChip({ active, onClick, children }: FilterChipProps) {
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`rounded-full border px-4 py-2 text-sm transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze-300 ${
+      className={`rounded-full border px-4 py-2 text-sm transition duration-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 ${
         active
-          ? 'border-bronze-400 bg-bronze-400 font-bold text-charcoal-950'
-          : 'border-charcoal-600 text-cream-200 hover:border-bronze-500 hover:text-bronze-300'
+          ? 'border-ink-900 bg-ink-900 font-medium text-ivory-50'
+          : 'border-ink-300/60 text-ink-600 hover:border-gold-400 hover:text-ink-900'
       }`}
     >
       {children}
@@ -47,8 +47,8 @@ function FilterChip({ active, onClick, children }: FilterChipProps) {
 function FilterGroup({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-3">
-      <span className="text-xs text-charcoal-200">{label}</span>
-      <div className="flex flex-wrap gap-2">{children}</div>
+      <span className="text-xs font-medium uppercase tracking-luxe text-gold-600">{label}</span>
+      <div className="flex flex-wrap gap-2.5">{children}</div>
     </div>
   );
 }
@@ -67,10 +67,10 @@ export default function FilterBar({
   onAvailabilityChange,
 }: FilterBarProps) {
   return (
-    <div className="flex flex-col gap-6 rounded-3xl border border-charcoal-700 bg-charcoal-900/60 p-5 sm:p-6">
+    <div className="flex flex-col gap-7 rounded-2xl border border-ink-300/40 bg-ivory-100 p-6 sm:p-7">
       <label className="relative block">
         <span className="sr-only">جست‌وجو در سنگ‌ها</span>
-        <Search className="pointer-events-none absolute start-4 top-1/2 h-4 w-4 -translate-y-1/2 text-charcoal-300" aria-hidden="true" />
+        <Search className="pointer-events-none absolute start-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400" aria-hidden="true" />
         <input
           type="search"
           value={query}

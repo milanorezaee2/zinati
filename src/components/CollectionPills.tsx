@@ -6,12 +6,12 @@ interface CollectionPillsProps {
 
 export default function CollectionPills({ collections }: CollectionPillsProps) {
   return (
-    <ul className="flex flex-wrap gap-2">
+    <ul className="flex flex-wrap gap-2.5">
       {collections.map((collection) => (
         <li key={collection.id}>
           <a
             href={`#/category/${collection.slug}`}
-            className="inline-flex items-center rounded-full border border-bronze-500/50 px-4 py-1.5 text-sm text-bronze-300 transition duration-300 hover:border-bronze-400 hover:bg-bronze-500/10 hover:text-cream-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze-300"
+            className="inline-flex items-center rounded-full border border-ink-300/60 bg-ivory-50 px-5 py-2.5 text-sm text-ink-700 transition duration-400 hover:border-gold-400 hover:bg-gold-200/30 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
           >
             {collection.name}
           </a>

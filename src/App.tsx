@@ -56,10 +56,10 @@ export default function App() {
         {showCategorySidebar ? (
           <div className="mx-auto max-w-[1600px] lg:grid lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-6 lg:px-8 lg:py-8 xl:grid-cols-[280px_minmax(0,1fr)]">
             <CategorySidebar activeSlug={activeSection === 'category' ? routeValue : undefined} isGallery={activeSection === 'gallery'} />
-            <div key={pageKey} className="min-w-0 animate-fade-up lg:overflow-hidden lg:rounded-[1.75rem]">{renderPage(route)}</div>
+            <div key={pageKey} className="min-w-0 lg:overflow-hidden lg:rounded-[1.75rem]">{renderPage(route)}</div>
           </div>
         ) : (
-          <div key={pageKey} className="animate-fade-up">{renderPage(route)}</div>
+          <div key={pageKey}>{renderPage(route)}</div>
         )}
       </main>
       <Footer />
