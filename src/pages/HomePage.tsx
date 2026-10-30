@@ -1,10 +1,17 @@
-import { useState } from 'react';
-import { ArrowDown, ArrowLeft, ChevronLeft, Gem, Layers3, Plus } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowDown, ArrowLeft, ChevronLeft, Gem, Layers3, Pause, Play, Plus } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/siteConfig';
 import StoneCard from '@/components/StoneCard';
 import { useAsyncData } from '@/hooks/useAsyncData';
 import { fetchCatalog } from '@/lib/stones';
 import { COLLECTION_IMAGES } from '@/lib/collectionImages';
+
+const HERO_SLIDES = [
+  { image: 'images/gallery-hero.jpg', label: 'ژئود در نور' },
+  { image: 'images/gemstones.jpg', label: 'درخشش گوهرها' },
+  { image: 'images/geodes.jpg', label: 'نقش‌های پنهان' },
+  { image: 'images/decorative.jpg', label: 'رنگ طبیعت' },
+];
 
 const guide = [
   { number: '۰۱', title: 'رنگ و نقش', text: 'به طیف رنگ‌ها، رگه‌ها و الگوهایی که روی سطح یا درون سنگ دیده می‌شوند توجه کنید.' },
@@ -25,6 +32,21 @@ function goTo(id: string) {
 export default function HomePage() {
   const { state, retry } = useAsyncData(fetchCatalog, []);
   const [selectedCollection, setSelectedCollection] = useState<string | null>(null);
+  const [heroSlide, setHeroSlide] = useState(0);
+  const [heroPlaying, setHeroPlaying] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(preference.matches);
+    update();
+    preference.addEventListener('change', update);
+    return () => preference.removeEventListener('change', update);
+  }, []);
+  useEffect(() => {
+    if (!heroPlaying || reducedMotion) return;
+    const timer = window.setInterval(() => setHeroSlide((current) => (current + 1) % HERO_SLIDES.length), 7000);
+    return () => window.clearInterval(timer);
+  }, [heroPlaying, reducedMotion]);
   const collections = state.status === 'ready' ? state.data.collections : [];
   const selected = collections.find((item) => item.slug === selectedCollection) ?? collections[0];
   const featured = state.status === 'ready' ? state.data.stones.filter((stone) => stone.featured).slice(0, 3) : [];
@@ -34,7 +56,7 @@ export default function HomePage() {
       {/* Cinematic introduction */}
       <section className="cinematic-hero" aria-labelledby="hero-title">
         <div className="cinematic-hero__visual" aria-hidden="true">
-          <img src={`${import.meta.env.BASE_URL}images/gallery-hero.jpg`} alt="" fetchPriority="high" className="cinematic-hero__image" />
+          {HERO_SLIDES.map((slide, index) => <img key={slide.image} src={`${import.meta.env.BASE_URL}${slide.image}`} alt="" fetchPriority={index === 0 ? 'high' : 'auto'} className={`cinematic-hero__image ${index === heroSlide ? 'is-active' : ''}`} />)}
           <div className="cinematic-hero__shade" />
           <div className="cinematic-hero__light" />
           <div className="cinematic-hero__grain" />
@@ -57,7 +79,13 @@ export default function HomePage() {
               <a href="#/about" className="cinematic-secondary">درباره گالری <ArrowLeft size={16} aria-hidden="true" /></a>
             </div>
           </div>
-          <div className="cinematic-side-note" aria-hidden="true"><span>CURATED BY NATURE</span><i /></div>
+          <div className="hero-preview" aria-label="پیش‌نمایش تصاویر گالری">
+            <div className="hero-preview__heading"><div><span className="hero-preview__eyebrow">قابی از طبیعت</span><p className="hero-preview__title">{HERO_SLIDES[heroSlide].label}</p></div><span className="hero-preview__count" dir="ltr">0{heroSlide + 1} <span>/</span> 04</span></div>
+            <div className="hero-preview__thumbnails">
+              {HERO_SLIDES.map((slide, index) => <button key={slide.image} type="button" onClick={() => { setHeroSlide(index); setHeroPlaying(false); }} aria-label={`نمایش تصویر ${slide.label}`} aria-pressed={heroSlide === index} className={`hero-preview__thumb ${heroSlide === index ? 'is-active' : ''}`}><img src={`${import.meta.env.BASE_URL}${slide.image}`} alt="" loading="lazy" /></button>)}
+            </div>
+            <div className="hero-preview__footer"><span>تصاویر نمایشی گالری</span>{!reducedMotion && <button type="button" onClick={() => setHeroPlaying((playing) => !playing)} className="hero-preview__play" aria-label={heroPlaying ? 'توقف پخش خودکار تصاویر' : 'شروع پخش خودکار تصاویر'}>{heroPlaying ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}{heroPlaying ? 'توقف نمایش' : 'پخش تصاویر'}</button>}</div>
+          </div>
         </div>
 
         <div className="cinematic-bottom">
