@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react';
 import { CheckCircle2, Loader2 } from 'lucide-react';
-import { submitInquiry } from '@/lib/inquiries';
 import { normalizeDigits } from '@/lib/format';
 import { BUTTON_PRIMARY, BUTTON_SECONDARY, INPUT_BASE, INPUT_IDLE, INPUT_INVALID } from '@/lib/styles';
 
@@ -38,7 +37,7 @@ function validate(values: FormValues): FormErrors {
   return errors;
 }
 
-export default function InquiryForm({ stoneId = null, stoneCode = null, defaultMessage = '' }: InquiryFormProps) {
+export default function InquiryForm({ defaultMessage = '' }: InquiryFormProps) {
   const [values, setValues] = useState<FormValues>({ ...EMPTY_VALUES, message: defaultMessage });
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<SubmitStatus>('idle');
@@ -48,25 +47,14 @@ export default function InquiryForm({ stoneId = null, stoneCode = null, defaultM
     setErrors((current) => ({ ...current, [field]: undefined }));
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validate(values);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
-    setStatus('submitting');
-    try {
-      await submitInquiry({
-        stoneId,
-        stoneCode,
-        name: values.name.trim(),
-        phone: normalizeDigits(values.phone).trim(),
-        message: values.message.trim(),
-      });
-      setStatus('success');
-    } catch {
-      setStatus('error');
-    }
+    // No delivery service is configured yet; do not report a false success.
+    setStatus('error');
   };
 
   const resetForm = () => {
@@ -164,11 +152,12 @@ export default function InquiryForm({ stoneId = null, stoneCode = null, defaultM
 
       {status === 'error' && (
         <p role="alert" className="rounded-xl border border-rose-400/50 bg-rose-600/10 px-4 py-3 text-sm text-rose-300">
-          ثبت درخواست انجام نشد. لطفاً دوباره تلاش کنید یا از راه واتساپ با ما در تماس باشید.
+          امکان ارسال فرم هنوز فعال نشده است. پس از تعیین روش دریافت پیام، این بخش فعال خواهد شد.
         </p>
       )}
 
-      <button type="submit" disabled={status === 'submitting'} className={`${BUTTON_PRIMARY} w-full`}>
+      <p className="text-sm leading-7 text-charcoal-200">ارسال فرم در حال حاضر فعال نیست و نیاز به تنظیم روش دریافت پیام دارد.</p>
+      <button type="submit" disabled className={`${BUTTON_PRIMARY} w-full`}>
         {status === 'submitting' ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
